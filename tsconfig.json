@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"module": "system",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"noImplicitAny": false
+	},
+	"exclude": [
+		"jspm_packages",
+		"node_modules",
+		"typings/main",
+		"typings/main.d.ts"
+	]
+}

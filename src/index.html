@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<base href="/src/">
+
+	<title>Example TODO Carbon App</title>
+	<link rel="stylesheet" href="assets/vendor/semantic-ui/semantic.min.css">
+</head>
+<body>
+	<app>
+		<style>
+			html, body {
+				width: 100%;
+				height: 100%;
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			app {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+			}
+
+			app .ui.loading.form {
+				flex: 1;
+				height: 100%;
+			}
+
+			app .ui.negative.message {
+				display: none;
+			}
+		</style>
+		<div class="ui loading form"></div>
+
+		<div class="ui negative message">x_x</div>
+	</app>
+
+	<script src="assets/node_modules/es6-shim.js"></script>
+	<script src="assets/node_modules/system-polyfills.src.js"></script>
+	<script src="assets/node_modules/angular2-polyfills.js"></script>
+	<script src="assets/node_modules/system.src.js"></script>
+	<script src="assets/node_modules/Rx.js"></script>
+	<script src="../jspm.browser.js"></script>
+	<script src="../jspm.config.js"></script>
+	<script>
+		System.import( "app/boot" ).catch( function( error ) {
+			console.error( error );
+			displayError();
+		});
+		function displayError() {
+			var nodesToHide = document.querySelectorAll( "app *:not( style )" );
+			for( var i = 0; i < nodesToHide.length; i++ ) {
+				nodesToHide[ i ].style.display = "none";
+			}
+			document.querySelector( "app .ui.negative.message" ).style.display = "block";
+		}
+	</script>
+</body>
+</html>

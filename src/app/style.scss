@@ -1,0 +1,46 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+app {
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	flex: 0 0 60px;
+
+	border-bottom: 1px solid rgba( 0, 0, 0, .09);
+	border-radius: 3px;
+	box-shadow: 0 1px 4px rgba( 0, 0, 0, .04 );
+}
+
+.l-main {
+	flex: 1;
+
+	background: #FAFAFA;
+}
+
+footer {
+	flex: 0 0 30px;
+}
+
+// Semantic overrides
+.ui.padded-y.grid {
+	margin: 0 -1rem;
+}
+.ui.padded-y.grid > .row {
+	padding: 0;
+}
+.ui.padded-y.grid > .column:not(.row) {
+	padding-top: 0;
+	padding-bottom: 0;
+}
