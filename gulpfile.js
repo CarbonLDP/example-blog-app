@@ -1,11 +1,14 @@
 "use strict";
 
 const gulp = require( "gulp" );
+const util = require( "gulp-util" );
 
 const ejs = require( "gulp-ejs" );
 const sass = require( "gulp-sass" );
 const autoprefixer = require( "gulp-autoprefixer" );
 const sourcemaps = require( "gulp-sourcemaps" );
+
+const watch = require( "gulp-watch" );
 
 const webserver = require( "gulp-webserver" );
 
@@ -56,6 +59,13 @@ gulp.task( "serve", [ "node-dependencies:copy", "styles:compile" ], () => {
 });
 
 gulp.task( "serve:afterBuild", () => {
+	watch( config.source.sass, ( file ) => {
+		util.log( "SCSS file changed: ", file.path );
+		gulp.start( "styles:compile" );
+	}).on( "error", ( error ) => {
+		util.log( util.colors.red( "Error" ), error.message );
+	});
+
 	return gulp.src( "." )
 		.pipe( webserver({
 			livereload: false,

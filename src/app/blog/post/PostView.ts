@@ -1,11 +1,10 @@
 import {Component, ElementRef} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/common";
 import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
-import Post from "app/models/Post";
-import PostTileComponent from "app/post-tile/PostTileComponent";
+import Post from "app/blog/models/Post";
+import PostTileComponent from "app/blog/post-tile/PostTileComponent";
 import template from "./template.html!";
 import style from "./style.css!";
-
 
 @Component( {
 	selector: "app",

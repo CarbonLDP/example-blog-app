@@ -5,9 +5,13 @@ import { ROUTER_PROVIDERS, APP_BASE_HREF } from "angular2/router";
 import { HTTP_PROVIDERS } from "angular2/http";
 
 import Carbon from "carbonldp/Carbon";
+import { appContext, CARBON_PROVIDERS } from "app/carbon/Carbon";
 
 import AppComponent from "./AppComponent";
-import * as AppContext from "carbonldp/App";
+
+import { CARBON_SERVICE_PROVIDERS } from "app/services/CarbonServices";
+import { DUMMY_SERVICE_PROVIDERS } from "app/services/DummyServices";
+
 
 export const appInjector:( injector?:Injector ) => Injector = ( ():( injector?:Injector ) => Injector => {
 	let appInjector:Injector;
@@ -17,33 +21,109 @@ export const appInjector:( injector?:Injector ) => Injector = ( ():( injector?:I
 	};
 })();
 
-let carbon:Carbon = new Carbon();
-carbon.setSetting( "domain", "dev.carbonldp.com" );
-carbon.auth.authenticate( "admin@carbonldp.com", "hello" ).then( () => {
-	return carbon.apps.get( "test-app/" );
-}).then( ( appContext ) => {
+let providers:Provider[] = [];
+if( true ) {
+	let carbon:Carbon = new Carbon();
+	carbon.setSetting( "domain", "dev.carbonldp.com" );
 
-	const CARBON_PROVIDER:Provider = provide( Carbon, {
-		useValue: carbon,
+	carbon.extendObjectSchema( {
+		"acl": "http://www.w3.org/ns/auth/acl#",
+		"api": "http://purl.org/linked-data/api/vocab#",
+		"c": "http://carbonldp.com/ns/v1/platform#",
+		"cs": "http://carbonldp.com/ns/v1/security#",
+		"cp": "http://carbonldp.com/ns/v1/patch#",
+		"cc": "http://creativecommons.org/ns#",
+		"cert": "http://www.w3.org/ns/auth/cert#",
+		"dbp": "http://dbpedia.org/property/",
+		"dc": "http://purl.org/dc/terms/",
+		"doap": "http://usefulinc.com/ns/doap#",
+		"example": "http://example.org/ns#",
+		"ex": "http://example.org/ns#",
+		"exif": "http://www.w3.org/2003/12/exif/ns#",
+		"fn": "http://www.w3.org/2005/xpath-functions#",
+		"foaf": "http://xmlns.com/foaf/0.1/",
+		"geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+		"geonames": "http://www.geonames.org/ontology#",
+		"gr": "http://purl.org/goodrelations/v1#",
+		"http": "http://www.w3.org/2006/http#",
+		"ldp": "http://www.w3.org/ns/ldp#",
+		"log": "http://www.w3.org/2000/10/swap/log#",
+		"owl": "http://www.w3.org/2002/07/owl#",
+		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+		"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+		"rei": "http://www.w3.org/2004/06/rei#",
+		"rsa": "http://www.w3.org/ns/auth/rsa#",
+		"rss": "http://purl.org/rss/1.0/",
+		"sd": "http://www.w3.org/ns/sparql-service-description#",
+		"sfn": "http://www.w3.org/ns/sparql#",
+		"sioc": "http://rdfs.org/sioc/ns#",
+		"skos": "http://www.w3.org/2004/02/skos/core#",
+		"swrc": "http://swrc.ontoware.org/ontology#",
+		"types": "http://rdfs.org/sioc/types#",
+		"vcard": "http://www.w3.org/2001/vcard-rdf/3.0#",
+		"wot": "http://xmlns.com/wot/0.1/",
+		"xhtml": "http://www.w3.org/1999/xhtml#",
+		"xsd": "http://www.w3.org/2001/XMLSchema#"
 	} );
 
-	const CARBON_APP_PROVIDER:Provider = provide( AppContext.Context, {
-		useValue: appContext,
-	} );
+	carbon.extendObjectSchema( {
+		"blog": "http://example.com/ns#",
+	});
 
-	return bootstrap( AppComponent, [
-		FORM_PROVIDERS,
-		ROUTER_PROVIDERS,
-		HTTP_PROVIDERS,
+	carbon.extendObjectSchema( {
+		"title": {
+			"@id": "blog:title",
+			"@type": "xsd:string",
+		},
+		"content": {
+			"@id": "blog:content",
+			"@type": "xsd:string",
+		},
+		"author": {
+			"@id": "blog:author",
+			"@type": "@id",
+		},
+		"publishedOn": {
+			"@id": "blog:publishedOn",
+			"@type": "xsd:dateTime"
+		},
+		"comments": {
+			// TODO: Change letter case
+			"@id": "blog:comments",
+			"@type": "@id",
+			"@container": "@set",
+		},
+		"likes": {
+			// TODO: Change letter case
+			"@id": "blog:likes",
+			"@type": "@id",
+			"@container": "@set",
+		}
+	});
 
-		provide( APP_BASE_HREF, { useValue: "/src/" } ),
+	appContext.initialize( carbon, "example-blog/" );
 
-		CARBON_PROVIDER,
-		CARBON_APP_PROVIDER,
-	] );
-}).then( ( appRef:ComponentRef ) => {
+	providers = providers
+		.concat( CARBON_PROVIDERS )
+		.concat( CARBON_SERVICE_PROVIDERS );
+} else {
+	providers = providers
+		.concat( DUMMY_SERVICE_PROVIDERS );
+}
+
+
+bootstrap( AppComponent, [
+	FORM_PROVIDERS,
+	ROUTER_PROVIDERS,
+	HTTP_PROVIDERS,
+
+	provide( APP_BASE_HREF, { useValue: "/src/" } ),
+
+	providers,
+] ).then( ( appRef:ComponentRef ) => {
 	appInjector( appRef.injector );
 }).catch( ( error ) => {
-	console.error( "Couldn't initialize carbon's app context" );
+	console.error( "Couldn't bootstrap the application" );
 	console.error( error );
+	return Promise.reject( error );
 });

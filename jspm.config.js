@@ -8,7 +8,7 @@ SystemJS.config({
     "npm:*": "jspm_packages/npm/*",
     "app/": "src/app/",
     "assets/": "src/assets/",
-    "semantic-ui/": "src/assets/vendor/semantic-ui/dist/components/"
+    "semantic-ui/": "src/assets/vendor/semantic-ui/components/"
   },
   packages: {
     "app": {
@@ -23,11 +23,13 @@ SystemJS.config({
     },
     "carbon": {
       "defaultExtension": "js"
+    },
+    "semantic-ui": {
+      "defaultExtension": "js"
     }
   },
   map: {
-    "html": "github:systemjs/plugin-text@0.0.7",
-    "css": "github:systemjs/plugin-text@0.0.7",
+    "html": "github:systemjs/plugin-text@0.0.7"
   }
 });
 
@@ -38,6 +40,7 @@ SystemJS.config({
     "npm:*.json"
   ],
   map: {
+    "css": "github:systemjs/plugin-text@0.0.7",
     "angular2": "npm:angular2@2.0.0-beta.9",
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
@@ -56,6 +59,7 @@ SystemJS.config({
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "jodid25519": "npm:jodid25519@1.0.2",
     "jquery": "npm:jquery@2.2.1",
+    "js-cookie": "npm:js-cookie@2.1.0",
     "jsbn": "npm:jsbn@0.1.0",
     "jsonld": "npm:jsonld@0.4.6",
     "net": "github:jspm/nodelibs-net@0.2.0-alpha",

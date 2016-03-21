@@ -1,0 +1,21 @@
+<header class="ui borderless menu">
+	<div class="ui container">
+		<a class="ui header item" [routerLink]="[ 'Home' ]">Example Blog</a>
+		<div *ngIf="authService.isAuthenticated()" class="right menu">
+			<div class="ui dropdown item">
+				<i class="user icon"></i> User <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item" [routerLink]="[ 'Admin/Posts' ]">Admin Panel</a>
+					<a class="item" (click)="logout()">Logout</a>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="! authService.isAuthenticated()" class="right menu">
+			<a class="ui item" [routerLink]="[ 'Auth' ]">Login/Signup</a>
+		</div>
+	</div>
+</header>
+<div class="l-expanded l-columns">
+	<router-outlet></router-outlet>
+</div>
+<footer></footer>
