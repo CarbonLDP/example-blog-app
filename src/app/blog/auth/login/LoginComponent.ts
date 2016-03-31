@@ -2,8 +2,8 @@ import {Component, ElementRef, Inject} from "angular2/core";
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, ControlGroup, Control, Validators, FormBuilder} from "angular2/common";
 import {ROUTER_DIRECTIVES, Router} from "angular2/router";
 
-import {NotAuthenticated} from "app/blog/auth/Auth";
-import * as AuthService from "app/services/AuthService";
+import {NotAuthenticated} from "angular2-carbonldp/decorators";
+import {AuthService} from "angular2-carbonldp/services";
 
 import template from "./template.html!";
 

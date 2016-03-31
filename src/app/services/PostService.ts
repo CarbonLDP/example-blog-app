@@ -1,5 +1,5 @@
 import { OpaqueToken } from "angular2/core";
-import Post from "app/models/Post";
+import Post from "app/blog/models/Post";
 
 export interface Class {
 	get( numberOfPosts:number, offset:number, orderBy:string, ascending:boolean ):Promise<Post[]>;

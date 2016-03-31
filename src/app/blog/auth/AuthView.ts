@@ -2,7 +2,7 @@ import {Component, ElementRef, Inject} from "angular2/core";
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, ControlGroup, Control, Validators, FormBuilder} from "angular2/common";
 import {ROUTER_DIRECTIVES} from "angular2/router";
 
-import {NotAuthenticated} from "app/blog/auth/Auth";
+import {NotAuthenticated} from "angular2-carbonldp/decorators";
 
 import LoginComponent from "app/blog/auth/login/LoginComponent";
 

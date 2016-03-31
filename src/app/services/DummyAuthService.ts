@@ -1,8 +1,6 @@
 import { Injectable } from "angular2/core";
 
-import { Context } from "carbonldp/App";
-
-import * as AuthService from "app/services/AuthService";
+import { AuthService } from "angular2-carbonldp/services";
 
 @Injectable()
 export default class DummyAuthService implements AuthService.Class {

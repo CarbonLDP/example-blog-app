@@ -2,9 +2,9 @@ import { Component, ElementRef, ViewEncapsulation, Inject } from "angular2/core"
 import { CORE_DIRECTIVES } from "angular2/common";
 import { ROUTER_DIRECTIVES, RouteConfig } from "angular2/router";
 
-import * as AuthService from "app/services/AuthService";
+import { RequiresActiveContext } from "angular2-carbonldp/decorators";
 
-import {RequiresAppContext} from "app/carbon/Carbon";
+import { AuthService } from "angular2-carbonldp/services";
 
 import HomeView from "app/blog/home/HomeView";
 import PostView from "app/blog/post/PostView";
@@ -20,7 +20,7 @@ import "semantic-ui/dropdown";
 import template from "./template.html!";
 import style from "./style.css!";
 
-@RequiresAppContext({
+@RequiresActiveContext({
 	redirectTo: [ "/Blog" ]
 })
 @Component( {

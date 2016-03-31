@@ -1,6 +1,6 @@
 import { provide, Provider } from "angular2/core";
 
-import * as AuthService from "./AuthService";
+import { AuthService } from "angular2-carbonldp/services";
 import DummyAuthService from "./DummyAuthService";
 
 import * as PostService from "./PostService";

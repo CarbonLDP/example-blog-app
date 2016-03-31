@@ -1,25 +1,18 @@
 import { bootstrap } from "angular2/platform/browser";
-import { provide, Provider, Injector, ComponentRef } from "angular2/core";
+import { provide, Provider, ComponentRef } from "angular2/core";
 import { FORM_PROVIDERS } from "angular2/common";
 import { ROUTER_PROVIDERS, APP_BASE_HREF } from "angular2/router";
 import { HTTP_PROVIDERS } from "angular2/http";
 
+import { appInjector, activeContext, CARBON_PROVIDERS } from "angular2-carbonldp/boot";
+import { CARBON_SERVICES_PROVIDERS } from "angular2-carbonldp/services";
+
 import Carbon from "carbonldp/Carbon";
-import { appContext, CARBON_PROVIDERS } from "app/carbon/Carbon";
 
 import AppComponent from "./AppComponent";
 
-import { CARBON_SERVICE_PROVIDERS } from "app/services/CarbonServices";
+import { SERVICE_PROVIDERS } from "app/services/CarbonServices";
 import { DUMMY_SERVICE_PROVIDERS } from "app/services/DummyServices";
-
-
-export const appInjector:( injector?:Injector ) => Injector = ( ():( injector?:Injector ) => Injector => {
-	let appInjector:Injector;
-	return ( injector?:Injector ):Injector => {
-		if( injector ) appInjector = injector;
-		return appInjector;
-	};
-})();
 
 let providers:Provider[] = [];
 if( true ) {
@@ -101,16 +94,16 @@ if( true ) {
 		}
 	});
 
-	appContext.initialize( carbon, "example-blog/" );
+	activeContext.initialize( carbon, "example-blog/" );
 
 	providers = providers
 		.concat( CARBON_PROVIDERS )
-		.concat( CARBON_SERVICE_PROVIDERS );
+		.concat( CARBON_SERVICES_PROVIDERS )
+		.concat( SERVICE_PROVIDERS );
 } else {
 	providers = providers
 		.concat( DUMMY_SERVICE_PROVIDERS );
 }
-
 
 bootstrap( AppComponent, [
 	FORM_PROVIDERS,

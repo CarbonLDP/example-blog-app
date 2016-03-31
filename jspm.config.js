@@ -21,9 +21,6 @@ SystemJS.config({
         }
       }
     },
-    "carbon": {
-      "defaultExtension": "js"
-    },
     "semantic-ui": {
       "defaultExtension": "js"
     }
@@ -40,11 +37,13 @@ SystemJS.config({
     "npm:*.json"
   ],
   map: {
+    "angular2-carbonldp": "npm:angular2-carbonldp@0.1.2",
+    "codemirror": "npm:codemirror@5.13.0",
     "css": "github:systemjs/plugin-text@0.0.7",
-    "angular2": "npm:angular2@2.0.0-beta.9",
+    "angular2": "npm:angular2@2.0.0-beta.13",
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
-    "carbonldp": "npm:carbonldp@0.18.0-ALPHA",
+    "carbonldp": "npm:carbonldp@0.21.1-ALPHA",
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
     "constants": "github:jspm/nodelibs-constants@0.2.0-alpha",
     "crypto": "github:jspm/nodelibs-crypto@0.2.0-alpha",
@@ -79,9 +78,27 @@ SystemJS.config({
     "util": "github:jspm/nodelibs-util@0.2.0-alpha",
     "vm": "github:jspm/nodelibs-vm@0.2.0-alpha",
     "zlib": "github:jspm/nodelibs-zlib@0.2.0-alpha",
-    "zone.js": "npm:zone.js@0.6.4"
+    "zone.js": "npm:zone.js@0.6.8"
   },
   packages: {
+    "npm:angular2-carbonldp@0.1.2": {
+      "map": {
+        "angular2": "npm:angular2@2.0.0-beta.13",
+        "carbonldp": "npm:carbonldp@0.20.0-ALPHA",
+        "es6-shim": "npm:es6-shim@0.35.0",
+        "js-cookie": "npm:js-cookie@2.1.0",
+        "reflect-metadata": "npm:reflect-metadata@0.1.2",
+        "rxjs": "npm:rxjs@5.0.0-beta.2",
+        "zone.js": "npm:zone.js@0.6.8"
+      }
+    },
+    "npm:angular2@2.0.0-beta.13": {
+      "map": {
+        "reflect-metadata": "npm:reflect-metadata@0.1.2",
+        "rxjs": "npm:rxjs@5.0.0-beta.2",
+        "zone.js": "npm:zone.js@0.6.8"
+      }
+    },
     "github:frankwallis/plugin-typescript@4.0.2": {
       "map": {
         "typescript": "npm:typescript@1.8.7"
