@@ -42,7 +42,6 @@ import style from "./style.css!";
 export default class BlogView {
 	private $element:JQuery;
 
-	// TODO: Change it to AuthService
 	constructor( private element:ElementRef, @Inject( AuthService.Token ) private authService:AuthService.Class ) {}
 
 	ngAfterViewInit():void {

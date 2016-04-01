@@ -1,6 +1,6 @@
 {
-  "name": "example-blog-app",
-  "version": "1.0.0",
+  "name": "carbonldp-example-blog",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,9 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
+    "angular2": "^2.0.0-beta.13",
+    "angular2-carbonldp": "^0.1.2",
+    "carbonldp": "^0.21.1-ALPHA",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-ejs": "^2.1.1",
@@ -18,20 +21,9 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "gulp-webserver": "^0.9.1",
-    "jspm": "^0.16.31",
+    "jspm": "^0.17.0-beta.12",
     "typings": "^0.7.8",
     "yargs": "^4.3.1"
-  },
-  "dependencies": {
-    "angular2": "^2.0.0-beta.13",
-    "angular2-carbonldp": "^0.1.1",
-    "carbonldp": "^0.21.1-ALPHA",
-    "es6-promise": "^3.1.2",
-    "es6-shim": "^0.35.0",
-    "jspm": "^0.17.0-beta.11",
-    "reflect-metadata": "^0.1.3",
-    "rxjs": "^5.0.0-beta.2",
-    "zone.js": "^0.6.4"
   },
   "jspm": {
     "name": "app",
@@ -39,18 +31,18 @@
       "lib": "src/app"
     },
     "dependencies": {
-      "angular2": "npm:angular2@2.0.0-beta.13",
+      "angular2": "npm:angular2@^2.0.0-beta.13",
       "angular2-carbonldp": "npm:angular2-carbonldp@^0.1.2",
-      "carbonldp": "npm:carbonldp@^0.21.1-ALPHA",
-      "codemirror": "npm:codemirror@^5.13.0",
+      "carbonldp": "npm:carbonldp@^0.21.2-ALPHA",
+      "codemirror": "npm:codemirror@^5.13.2",
       "css": "github:systemjs/plugin-css@^0.1.20",
-      "jquery": "npm:jquery@^2.2.1",
-      "js-cookie": "npm:js-cookie@^2.1.0",
+      "jquery": "npm:jquery@^2.2.2",
       "jsonld": "npm:jsonld@^0.4.6",
-      "text": "github:systemjs/plugin-text@^0.0.7"
+      "text": "github:systemjs/plugin-text@^0.0.7",
+      "zone.js": "npm:zone.js@^0.6.8"
     },
     "devDependencies": {
-      "plugin-typescript": "github:frankwallis/plugin-typescript@^4.0.2"
+      "plugin-typescript": "github:frankwallis/plugin-typescript@^4.0.5"
     },
     "peerDependencies": {
       "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
@@ -61,8 +53,6 @@
       "dgram": "github:jspm/nodelibs-dgram@^0.2.0-alpha",
       "dns": "github:jspm/nodelibs-dns@^0.2.0-alpha",
       "ecc-jsbn": "npm:ecc-jsbn@0",
-      "es6-promise": "npm:es6-promise@^3.0.2",
-      "es6-shim": "npm:es6-shim@^0.33.3",
       "events": "github:jspm/nodelibs-events@^0.2.0-alpha",
       "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
       "http": "github:jspm/nodelibs-http@^0.2.0-alpha",
@@ -70,12 +60,13 @@
       "jodid25519": "npm:jodid25519@^1.0.0",
       "jsbn": "npm:jsbn@0.1",
       "net": "github:jspm/nodelibs-net@^0.2.0-alpha",
+      "os": "github:jspm/nodelibs-os@^0.2.0-alpha",
       "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
       "process": "github:jspm/nodelibs-process@^0.2.0-alpha",
       "punycode": "github:jspm/nodelibs-punycode@^0.2.0-alpha",
       "querystring": "github:jspm/nodelibs-querystring@^0.2.0-alpha",
       "reflect-metadata": "npm:reflect-metadata@0.1.2",
-      "rxjs": "npm:rxjs@5.0.0-beta.2",
+      "rxjs": "npm:rxjs@^5.0.0-beta.2",
       "stream": "github:jspm/nodelibs-stream@^0.2.0-alpha",
       "string_decoder": "github:jspm/nodelibs-string_decoder@^0.2.0-alpha",
       "tls": "github:jspm/nodelibs-tls@^0.2.0-alpha",
@@ -83,8 +74,7 @@
       "url": "github:jspm/nodelibs-url@^0.2.0-alpha",
       "util": "github:jspm/nodelibs-util@^0.2.0-alpha",
       "vm": "github:jspm/nodelibs-vm@^0.2.0-alpha",
-      "zlib": "github:jspm/nodelibs-zlib@^0.2.0-alpha",
-      "zone.js": "npm:zone.js@^0.6.4"
+      "zlib": "github:jspm/nodelibs-zlib@^0.2.0-alpha"
     },
     "overrides": {
       "npm:angular2@2.0.0-beta.13": {
@@ -92,12 +82,12 @@
         "dependencies": {
           "reflect-metadata": "npm:reflect-metadata@0.1.2",
           "rxjs": "npm:rxjs@^5.0.0-beta.2",
-          "zone.js": "npm:zone.js@^0.6.6"
+          "zone.js": "npm:zone.js@^0.6.8"
         },
         "peerDependencies": {
           "reflect-metadata": "npm:reflect-metadata@0.1.2",
           "rxjs": "npm:rxjs@^5.0.0-beta.2",
-          "zone.js": "npm:zone.js@^0.6.6"
+          "zone.js": "npm:zone.js@^0.6.8"
         },
         "jspmNodeConversion": false,
         "map": {
@@ -126,7 +116,7 @@
           "test.js"
         ]
       },
-      "npm:jquery@2.2.1": {
+      "npm:jquery@2.2.2": {
         "format": "amd"
       },
       "npm:reflect-metadata@0.1.2": {
@@ -134,13 +124,12 @@
           "crypto": "@empty"
         }
       },
-      "npm:typescript@1.8.7": {
+      "npm:typescript@1.8.9": {
         "browser": {},
         "map": {
           "buffer": "@empty",
           "child_process": "@empty",
           "fs": "@empty",
-          "os": "@empty",
           "path": "@empty",
           "process": "@empty",
           "readline": "@empty"

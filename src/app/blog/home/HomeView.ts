@@ -20,7 +20,7 @@ export default class HomeView {
 	posts:Post[] = [];
 	constructor( private element:ElementRef, @Inject(PostService.Token) private postService:PostService.Class ) {
 
-	}
+	} 
 
 	ngOnInit():void {
 		this.postService.get().then( ( posts:Post[] ) => {
