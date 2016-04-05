@@ -32,7 +32,7 @@ SystemJS.config({
   map: {
     "css": "github:systemjs/plugin-text@0.0.7",
     "angular2": "npm:angular2@2.0.0-beta.13",
-    "angular2-carbonldp": "npm:angular2-carbonldp@0.1.2",
+    "angular2-carbonldp": "npm:angular2-carbonldp@0.1.7",
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "carbonldp": "npm:carbonldp@0.21.2-ALPHA",
@@ -72,6 +72,13 @@ SystemJS.config({
     "zone.js": "npm:zone.js@0.6.8"
   },
   packages: {
+    "npm:angular2-carbonldp@0.1.7": {
+      "map": {
+        "angular2": "npm:angular2@2.0.0-beta.13",
+        "carbonldp": "npm:carbonldp@0.21.2-ALPHA",
+        "js-cookie": "npm:js-cookie@2.1.0"
+      }
+    },
     "github:jspm/nodelibs-buffer@0.2.0-alpha": {
       "map": {
         "buffer-browserify": "npm:buffer@4.5.1"
@@ -329,17 +336,6 @@ SystemJS.config({
     "github:jspm/nodelibs-url@0.2.0-alpha": {
       "map": {
         "url-browserify": "npm:url@0.11.0"
-      }
-    },
-    "npm:angular2-carbonldp@0.1.2": {
-      "map": {
-        "angular2": "npm:angular2@2.0.0-beta.13",
-        "carbonldp": "npm:carbonldp@0.21.2-ALPHA",
-        "es6-shim": "@empty",
-        "js-cookie": "npm:js-cookie@2.1.0",
-        "reflect-metadata": "@empty",
-        "rxjs": "@empty",
-        "zone.js": "@empty"
       }
     },
     "npm:url@0.11.0": {

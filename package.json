@@ -11,8 +11,9 @@
   "private": true,
   "devDependencies": {
     "angular2": "^2.0.0-beta.13",
-    "angular2-carbonldp": "^0.1.2",
+    "angular2-carbonldp": "^0.1.7",
     "carbonldp": "^0.21.1-ALPHA",
+    "es6-shim": "^0.35.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-ejs": "^2.1.1",
@@ -22,6 +23,7 @@
     "gulp-watch": "^4.3.5",
     "gulp-webserver": "^0.9.1",
     "jspm": "^0.17.0-beta.12",
+    "rxjs": "^5.0.0-beta.5",
     "typings": "^0.7.8",
     "yargs": "^4.3.1"
   },
@@ -32,7 +34,7 @@
     },
     "dependencies": {
       "angular2": "npm:angular2@^2.0.0-beta.13",
-      "angular2-carbonldp": "npm:angular2-carbonldp@^0.1.2",
+      "angular2-carbonldp": "npm:angular2-carbonldp@^0.1.7",
       "carbonldp": "npm:carbonldp@^0.21.2-ALPHA",
       "codemirror": "npm:codemirror@^5.13.2",
       "css": "github:systemjs/plugin-css@^0.1.20",
