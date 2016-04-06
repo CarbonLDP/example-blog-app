@@ -1,1 +1,25 @@
-Here the post would be displayed
+<div class="l-content">
+	<div class="ui container center aligned padded-y grid l-content">
+		<div class="twelve wide computer fourteen wide tablet sixteen wide phone left aligned column">
+			<main>
+				<h1>{{ post?.title }}</h1>
+				<p>{{ post?.content }}</p>
+			</main>
+			<div class="ui grid">
+				<div class="row">
+					<div class="left floated eight wide column">
+						<i class="empty heart icon"></i> {{ post?.likes?.length | default: "0" }} <i class="comments icon"></i> {{ post?.comments?.length | default: "0"}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="sixteen wide column">
+						<h3 class="heading">Responses</h3>
+						<form class="ui form">
+							<textarea></textarea>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

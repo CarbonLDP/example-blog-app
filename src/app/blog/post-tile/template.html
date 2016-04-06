@@ -5,10 +5,10 @@
 	<a class="read-more" [routerLink]="[ 'Post', { slug: post.slug } ]">Read more...</a>
 	<div class="ui padded-y grid">
 		<div class="left floated left aligned eight wide column">
-			<i class="empty heart icon"></i> {{ post.likes.length }}
+			<i class="empty heart icon"></i> {{ post.likes?.length | default: "0" }}
 		</div>
 		<div class="right floated right aligned eight wide column">
-			{{ post.comments.length | responses }}
+			{{ post.comments?.length | responses }}
 		</div>
 	</div>
 </div>

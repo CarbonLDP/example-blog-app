@@ -1,8 +1,11 @@
-import {Component, ElementRef, Inject, EventEmitter} from "angular2/core";
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, ControlGroup, Control, Validators, FormBuilder} from "angular2/common";
-import {ROUTER_DIRECTIVES} from "angular2/router";
+import {Component, ElementRef, Inject} from "angular2/core";
+import {CORE_DIRECTIVES, ControlGroup, Control, Validators, FormBuilder} from "angular2/common";
+import {Router, ROUTER_DIRECTIVES} from "angular2/router";
 
-import Post from "app/models/Post";
+import * as Document from "carbonldp/Document";
+import * as Pointer from "carbonldp/Pointer";
+
+import Post from "app/blog/models/Post";
 import * as PostService from "app/services/PostService";
 
 import template from "./template.html!";
@@ -19,19 +22,49 @@ export default class AdminView {
 		title: null,
 		content: null,
 	};
-
 	slug:string = "";
+	sending:boolean = false;
 
-	constructor( private element:ElementRef, @Inject( PostService.Token ) private postService:PostService.Class, private formBuilder:FormBuilder ) {
+	constructor( private element:ElementRef, private router:Router, @Inject( PostService.Token ) private postService:PostService.Class, private formBuilder:FormBuilder ) {
 		this.controls[ "title" ] = new Control( "", Validators.required );
 		this.controls[ "content" ] = new Control( "", Validators.required );
 
 		this.form = this.formBuilder.group( this.controls );
 
-		// this.controls[ "content" ].valueChanges
+		this.controls[ "title" ].valueChanges.subscribe( this.generateSlug.bind( this ) );
 	}
 
-	onTitleChange( event:Event ):void {
-		console.log( "%o", this.controls[ "title" ] );
+	generateSlug( title:string ):void {
+		this.slug = this.slugify( title );
+	}
+
+	onSubmit( data:any ):void {
+		this.sending = true;
+		if( ! this.form.valid ) {
+			this.sending = false;
+			// TODO: Add visual feedback
+			return;
+		}
+
+		let post:Post = {
+			title: data.title,
+			content: data.content,
+			publishedOn: new Date(),
+		};
+
+		this.postService.create( post, this.slug ).then( ( postPointer:Pointer.Class) => {
+			this.sending = false;
+			this.router.navigate( [ "List" ] );
+		}).catch( ( error ) => {
+			// TODO
+			this.sending = false;
+		});
+	}
+
+	private slugify( value:string ):string {
+		return value.toLowerCase()
+			.replace(/[^\w\s-]/g, '') // Remove non-word [a-z0-9_], non-whitespace, non-hyphen characters
+			.replace(/[\s_-]+/g, '-') // Swap any length of whitespace, underscore, hyphen characters with a single -
+			.replace(/^-+|-+$/g, ''); // Remove leading, trailing -
 	}
 }

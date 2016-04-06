@@ -39,11 +39,10 @@ export default class LoginComponent {
 	}
 
 	onLogin( data:any ):void {
-		console.log( "%o", data );
 		this.sending = true;
 		if( ! this.form.valid ) {
-			this.shakeForm();
 			this.sending = false;
+			// TODO: Add visual feedback
 			return;
 		}
 
@@ -54,9 +53,5 @@ export default class LoginComponent {
 			// TODO
 			this.sending = false;
 		});
-	}
-
-	shakeForm():void {
-
 	}
 }

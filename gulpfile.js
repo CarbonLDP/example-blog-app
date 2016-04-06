@@ -74,3 +74,20 @@ gulp.task( "serve:afterBuild", () => {
 			open: true,
 		}) );
 });
+
+gulp.task( "serve:withLocalPackages", [ "node-dependencies:copy", "styles:compile" ], () => {
+	watch( config.source.sass, ( file ) => {
+		util.log( "SCSS file changed: ", file.path );
+		gulp.start( "styles:compile" );
+	}).on( "error", ( error ) => {
+		util.log( util.colors.red( "Error" ), error.message );
+	});
+
+	return gulp.src( "../" )
+		.pipe( webserver({
+			livereload: false,
+			directoryListing: false,
+			fallback: "/example-blog-app/src/index.local.html",
+			open: true,
+		}) );
+});

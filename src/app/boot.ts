@@ -94,7 +94,7 @@ if( true ) {
 			"@id": "blog:likes",
 			"@type": "@id",
 			"@container": "@set",
-		}
+		},
 	});
 
 	activeContext.initialize( carbon, "example-blog/" );

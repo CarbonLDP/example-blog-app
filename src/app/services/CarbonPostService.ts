@@ -1,13 +1,16 @@
 import { Injectable } from "angular2/core";
 
-import { Context } from "carbonldp/App";
+import Context from "carbonldp/App/Context";
 import * as Document from "carbonldp/Document";
+import * as Fragment from "carbonldp/Fragment";
 import * as PersistedDocument from "carbonldp/PersistedDocument";
 import * as Pointer from "carbonldp/Pointer";
+import * as RDF from "carbonldp/RDF";
 import * as Response from "carbonldp/HTTP/Response";
 import * as Utils from "carbonldp/Utils";
 
-import Post from "app/models/Post";
+import Author from "app/blog/models/Author";
+import * as Post from "app/blog/models/Post";
 import * as PostService from "app/services/PostService";
 
 @Injectable()
@@ -16,9 +19,9 @@ export default class CarbonPostService implements PostService.Class {
 
 	constructor( private appContext:Context ) {}
 
-	get( numberOfPosts:number, offset:number, orderBy:string, ascending:boolean ):Promise<Post[]>;
-	get( slug:string ):Promise<Post>;
-	get():Promise<Post[]>;
+	get( numberOfPosts:number, offset:number, orderBy:string, ascending:boolean ):Promise<Post.Class[]>;
+	get( slug:string ):Promise<Post.Class>;
+	get():Promise<Post.Class[]>;
 	get( slugOrNumberOfPosts:any = null, offset:number = null, orderBy:string = null, ascending:boolean = null):Promise<any> {
 		let slug:string = Utils.isString( slugOrNumberOfPosts ) ? slugOrNumberOfPosts : null;
 		let numberOfPosts:number = Utils.isNumber( slugOrNumberOfPosts ) ? slugOrNumberOfPosts : null;
@@ -29,19 +32,16 @@ export default class CarbonPostService implements PostService.Class {
 		// TODO
 	}
 
-	getLatest( ):Promise<Post[]> {
-		return this.appContext.documents.getMembers( this.postsContainer ).then( ( [ posts, response ]:[ Pointer.Class[], Response.Class ] ) => {
-			return Pointer.Util.resolveAll( posts );
-		}).then( ( [ posts, responses ]:[ PersistedDocument.Class[], Response.Class[] ] ) => {
-			return <any> posts;
-		});
-	}
-
-	create( post:Post, slug:string = null ):Promise<Pointer.Class> {
+	create( post:Post.Class, slug:string = null ):Promise<Pointer.Class> {
 		// TODO: Validate properties
 
 		// TODO: Move this to a Factory?
-		let postDocument:Document.Class = Document.Factory.createFrom( post );
+		let postDocument:Document.Class & Post.Class = Document.Factory.createFrom( post );
+		postDocument.types.push( Post.RDF_CLASS );
+		
+		let author:Fragment.Class & Author = postDocument.createFragment();
+		author.name = "Pos yo!";
+		postDocument.author = author;
 
 		let promise:Promise<[ Pointer.Class, Response.Class ]>;
 		if( slug === null ) {
@@ -55,19 +55,31 @@ export default class CarbonPostService implements PostService.Class {
 		});
 	}
 
-	private getSingle( slug:string ):Promise<Post> {
+	private getSingle( slug:string ):Promise<Post.Class> {
 		return this.appContext.documents.get( `${this.postsContainer}${slug}/` ).then( ( [ document, response ]:[ PersistedDocument.Class, Response.Class ] ) => {
-			return <any> document;
+			let post:Post.Class & PersistedDocument.Class = <any> document;
+			this.assignSlug( post );
+
+			return post;
 		});
 	}
 
-	private getAll():Promise<Post[]> {
+	private getAll():Promise<Post.Class[]> {
 		return this.appContext.documents.getMembers( this.postsContainer ).then( ( [ posts, response ]:[ Pointer.Class[], Response.Class ] ) => {
 			// TODO: Fix getMembers
 			posts = !! posts ? posts : [];
 			return Pointer.Util.resolveAll( posts );
 		}).then( ( [ posts, responses ]:[ PersistedDocument.Class[], Response.Class[] ] ) => {
-			return !! posts ? posts : [];
+			return <(Post.Class & PersistedDocument.Class)[]> ( !! posts ? posts : [] );
+		}).then( ( posts:(Post.Class & PersistedDocument.Class)[] ) => {
+			posts.forEach( ( post ) => this.assignSlug( post ) );
+			return posts;
 		});
+	}
+
+	private assignSlug( post:Post.Class & Document.Class ):void {
+		let slug:string = RDF.URI.Util.getSlug( post.id );
+		slug = slug.endsWith( "/" ) ? slug.substring( 0, slug.length - 1 ) : slug;
+		post.slug = slug;
 	}
 }

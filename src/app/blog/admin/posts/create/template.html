@@ -2,7 +2,7 @@
 	<h2>Create Post</h2>
 	<div class="field">
 		<label>Title</label>
-		<input type="text" placeholder="My Awesome Post" ngControl="title" (input)="onTitleChange( $event )">
+		<input type="text" placeholder="My Awesome Post" ngControl="title">
 	</div>
 	<div class="inline field">
 		<label>Slug</label>
@@ -12,4 +12,5 @@
 		<label>Content</label>
 		<textarea class="" ngControl="content"></textarea>
 	</div>
+	<button type="submit" class="ui blue submit button" [disabled]="sending || ! form.valid" [ngClass]="{ loading: sending }">Create</button>
 </form>
