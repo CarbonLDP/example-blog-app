@@ -18,7 +18,7 @@ import "semantic-ui/transition";
 import "semantic-ui/dropdown";
 
 import template from "./template.html!";
-import style from "./style.css!";
+import style from "./style.css!text";
 
 @RequiresActiveContext({
 	redirectTo: [ "/Blog" ]
@@ -41,12 +41,17 @@ import style from "./style.css!";
 ] )
 export default class BlogView {
 	private $element:JQuery;
+	private $userDropdown:JQuery;
 
 	constructor( private element:ElementRef, @Inject( AuthService.Token ) private authService:AuthService.Class ) {}
 
 	ngAfterViewInit():void {
 		this.$element = $( this.element.nativeElement );
-		this.initializeDropdowns();
+
+		if( this.authService.isAuthenticated() ) this.initializeDropdowns();
+		this.authService.authChangedEmitter.subscribe( () => {
+			if( this.authService.isAuthenticated() ) this.initializeDropdowns();
+		});
 	}
 
 	initializeDropdowns():void {

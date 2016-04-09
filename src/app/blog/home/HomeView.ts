@@ -8,7 +8,7 @@ import * as PostService from "app/services/PostService";
 import PostTileComponent from "app/blog/post-tile/PostTileComponent";
 
 import template from "./template.html!";
-import style from "./style.css!";
+import style from "./style.css!text";
 
 @Component( {
 	selector: "app",

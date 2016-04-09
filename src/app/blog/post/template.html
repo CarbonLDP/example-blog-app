@@ -1,25 +1,43 @@
-<div class="l-content">
-	<div class="ui container center aligned padded-y grid l-content">
-		<div class="twelve wide computer fourteen wide tablet sixteen wide phone left aligned column">
-			<main>
+<article class="l-content">
+	<main class="post-content">
+		<div class="ui container center aligned padded-y grid">
+			<div class="twelve wide computer fourteen wide tablet sixteen wide phone left aligned column">
 				<h1>{{ post?.title }}</h1>
-				<p>{{ post?.content }}</p>
-			</main>
-			<div class="ui grid">
-				<div class="row">
+				<div [innerHTML]="post?.content"></div>
+			</div>
+		</div>
+	</main>
+	<footer class="post-footer">
+		<div class="postActionsFooter ui container center aligned padded-y grid">
+			<div class="postActionsFooter-social twelve wide computer fourteen wide tablet sixteen wide phone left aligned column">
+				<div class="ui padded-y grid">
 					<div class="left floated eight wide column">
-						<i class="empty heart icon"></i> {{ post?.likes?.length | default: "0" }} <i class="comments icon"></i> {{ post?.comments?.length | default: "0"}}
-					</div>
-				</div>
-				<div class="row">
-					<div class="sixteen wide column">
-						<h3 class="heading">Responses</h3>
-						<form class="ui form">
-							<textarea></textarea>
-						</form>
+						<div class="buttonSet">
+							<div class="buttonSet-inner">
+								<i class="empty heart icon"></i><span>{{ post?.likes?.length | default: "0" }}</span>
+							</div>
+						</div>
+						<div class="buttonSet">
+							<div class="buttonSet-inner">
+								<i class="comments icon"></i><span>{{ post?.comments?.length | default: "0" }}</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
+		<div class="postComments">
+			<div class="ui container center aligned padded-y grid">
+				<div class="twelve wide computer fourteen wide tablet sixteen wide phone left aligned column">
+					<h2>Comments</h2>
+					<form class="ui form">
+						<div class="field">
+							<textarea placeholder="Write down your comment"></textarea>
+						</div>
+						<button type="submit" class="ui button">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</footer>
+</article>

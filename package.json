@@ -35,11 +35,12 @@
     "dependencies": {
       "angular2": "npm:angular2@^2.0.0-beta.13",
       "angular2-carbonldp": "npm:angular2-carbonldp@^0.1.7",
-      "carbonldp": "npm:carbonldp@^0.21.2-ALPHA",
-      "codemirror": "npm:codemirror@^5.13.2",
+      "carbonldp": "npm:carbonldp@^0.25.0",
+      "codemirror": "npm:codemirror@^5.13.4",
       "css": "github:systemjs/plugin-css@^0.1.20",
       "jquery": "npm:jquery@^2.2.2",
       "jsonld": "npm:jsonld@^0.4.6",
+      "medium-editor": "npm:medium-editor@^5.15.1",
       "text": "github:systemjs/plugin-text@^0.0.7",
       "zone.js": "npm:zone.js@^0.6.8"
     },

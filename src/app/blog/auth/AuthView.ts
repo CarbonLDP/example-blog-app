@@ -7,7 +7,7 @@ import {NotAuthenticated} from "angular2-carbonldp/decorators";
 import LoginComponent from "app/blog/auth/login/LoginComponent";
 
 import template from "./template.html!";
-import style from "./style.css!";
+import style from "./style.css!text";
 
 @Component( {
 	selector: ".l-content.l-expanded.l-columns",

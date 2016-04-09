@@ -1,6 +1,7 @@
 import { Component } from "angular2/core";
 import { ROUTER_DIRECTIVES, RouteConfig } from "angular2/router";
 
+import TestView from "app/test/TestView";
 import ErrorView from "app/error/ErrorView";
 import BlogView from "app/blog/BlogView";
 
@@ -10,6 +11,7 @@ import BlogView from "app/blog/BlogView";
 	directives: [ ROUTER_DIRECTIVES ],
 } )
 @RouteConfig( [
+	{ path: "test", as: "Test", component: TestView },
 	{ path: "error", as: "Error", component: ErrorView },
 	{ path: "...", as: "Blog", component: BlogView },
 ] )

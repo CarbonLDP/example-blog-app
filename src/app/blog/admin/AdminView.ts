@@ -9,7 +9,7 @@ import PostsView from "app/blog/admin/posts/PostsView";
 import Post from "app/blog/models/Post";
 
 import template from "./template.html!";
-import style from "./style.css!";
+import style from "./style.css!text";
 
 @Authenticated({
 	redirectTo: [ "/Blog" ]

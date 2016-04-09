@@ -246,10 +246,6 @@ export default class DummyPostService {
 		if( numberOfPosts === null ) return this.getAll();
 	}
 
-	getLatest( ):Promise<Post[]> {
-
-	}
-
 	create( post:Post, slug:string = null ):Promise<Pointer.Class> {
 
 	}

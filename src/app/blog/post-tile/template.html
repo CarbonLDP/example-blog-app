@@ -1,7 +1,7 @@
 <div class="tile">
 	<div class="author">{{ post.author.name }}</div>
-	<h3>{{ post.title }}</h3>
-	<p>{{ post.content | excerpt }}</p>
+	<h3><a [routerLink]="[ 'Post', { slug: post.slug } ]">{{ post.title }}</a></h3>
+	<div [innerHTML]="post.content"></div>
 	<a class="read-more" [routerLink]="[ 'Post', { slug: post.slug } ]">Read more...</a>
 	<div class="ui padded-y grid">
 		<div class="left floated left aligned eight wide column">

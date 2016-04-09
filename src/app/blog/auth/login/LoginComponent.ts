@@ -2,8 +2,11 @@ import {Component, ElementRef, Inject} from "angular2/core";
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, ControlGroup, Control, Validators, FormBuilder} from "angular2/common";
 import {ROUTER_DIRECTIVES, Router} from "angular2/router";
 
-import {NotAuthenticated} from "angular2-carbonldp/decorators";
 import {AuthService} from "angular2-carbonldp/services";
+
+import * as Errors from "carbonldp/HTTP/Errors";
+
+import $ from "jquery";
 
 import template from "./template.html!";
 
@@ -12,9 +15,6 @@ import template from "./template.html!";
 	template: template,
 	providers: [ FORM_PROVIDERS ],
 	directives: [ CORE_DIRECTIVES, ROUTER_DIRECTIVES, FORM_DIRECTIVES ],
-} )
-@NotAuthenticated( {
-	redirectTo: [ "./Home" ],
 } )
 export default class LoginComponent {
 
@@ -26,11 +26,13 @@ export default class LoginComponent {
 
 	sending:boolean = false;
 
-	constructor( private element:ElementRef, @Inject(AuthService.Token) private authService:AuthService.Class, private formBuilder:FormBuilder, private router:Router ) {
+	private $form:JQuery;
 
-	}
+	constructor( private element:ElementRef, @Inject(AuthService.Token) private authService:AuthService.Class, private formBuilder:FormBuilder, private router:Router ) {}
 
-	ngOnInit():void {
+	ngAfterContentInit():void {
+		this.$form = $( this.element.nativeElement ).children( ".ui.form" );
+
 		this.controls[ "username" ] = new Control( "", Validators.required );
 		this.controls[ "password" ] = new Control( "", Validators.required );
 		this.controls[ "rememberMe" ] = new Control( true );
@@ -50,8 +52,17 @@ export default class LoginComponent {
 			this.sending = false;
 			this.router.navigate( [ "/Blog" ] );
 		}).catch( ( error ) => {
-			// TODO
-			this.sending = false;
+			if( error instanceof Errors.UnauthorizedError ) {
+				this.$form.transition( {
+					animation: "shake",
+					onComplete: () => {
+						this.sending = false;
+					}
+				});
+			} else {
+				this.sending = false;
+				console.error( error );
+			}
 		});
 	}
 }

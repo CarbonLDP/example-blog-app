@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject} from "angular2/core";
+import {Component, ElementRef, Inject, ViewEncapsulation} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/common";
 import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
 
@@ -10,13 +10,14 @@ import PostTileComponent from "app/blog/post-tile/PostTileComponent";
 import DefaultPipe from "app/blog/pipes/DefaultPipe";
 
 import template from "./template.html!";
-import style from "./style.css!";
+import style from "./style.css!text";
 
 @Component( {
 	selector: "app",
 	template: template,
 	styles: [ style ],
 	pipes: [ DefaultPipe ],
+	encapsulation: ViewEncapsulation.None,
 	directives: [ CORE_DIRECTIVES, ROUTER_DIRECTIVES, PostTileComponent ],
 } )
 export default class HomeView {

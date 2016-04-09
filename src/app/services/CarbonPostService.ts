@@ -1,5 +1,6 @@
 import { Injectable } from "angular2/core";
 
+import * as AccessPoint from "carbonldp/AccessPoint";
 import Context from "carbonldp/App/Context";
 import * as Document from "carbonldp/Document";
 import * as Fragment from "carbonldp/Fragment";
@@ -50,7 +51,17 @@ export default class CarbonPostService implements PostService.Class {
 			promise = this.appContext.documents.createChild( this.postsContainer, slug, postDocument );
 		}
 
-		return promise.then( ( [ postPointer, response ]:[ Pointer.Class, Response.Class ] ) => {
+		let postPointer:Pointer.Class;
+		return promise.then( ( [ pointer, response ]:[ Pointer.Class, Response.Class ] ) => {
+			postPointer = pointer;
+
+			let commentsAccessPoint:AccessPoint.Class = AccessPoint.Factory.create( postPointer, "http://example.com/ns#comments", "http://example.com/ns#post" );
+
+			let promises:Promise<any>[] = [];
+			promises.push( this.appContext.documents.createAccessPoint( commentsAccessPoint, "comments" ) );
+
+			return Promise.all( promises );
+		}).then( () => {
 			return postPointer;
 		});
 	}
@@ -73,6 +84,9 @@ export default class CarbonPostService implements PostService.Class {
 			return <(Post.Class & PersistedDocument.Class)[]> ( !! posts ? posts : [] );
 		}).then( ( posts:(Post.Class & PersistedDocument.Class)[] ) => {
 			posts.forEach( ( post ) => this.assignSlug( post ) );
+			posts.sort( ( postA:Post.Class, postB:Post.Class ) => {
+				return postA.publishedOn > postB.publishedOn ? -1 : postA.publishedOn < postB.publishedOn ? 1 : 0;
+			} );
 			return posts;
 		});
 	}

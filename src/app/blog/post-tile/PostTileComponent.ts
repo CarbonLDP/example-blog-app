@@ -9,7 +9,7 @@ import PostExcerptPipe from "app/blog/pipes/PostExcerptPipe";
 import PostResponsesPipe from "app/blog/pipes/PostResponsesPipe";
 
 import template from "./template.html!";
-import style from "./style.css!";
+import style from "./style.css!text";
 
 
 

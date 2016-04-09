@@ -33,13 +33,13 @@ SystemJS.config({
 		"npm:*.json"
 	],
 	map: {
-		"css": "github:systemjs/plugin-text@0.0.7",
+		"css": "github:systemjs/plugin-css@0.1.20",
 		"angular2": "npm:angular2@2.0.0-beta.13",
 		"angular2-carbonldp": "npm:angular2-carbonldp@0.1.7",
 		"assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
 		"buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
 		"child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
-		"codemirror": "npm:codemirror@5.13.2",
+		"codemirror": "npm:codemirror@5.13.4",
 		"constants": "github:jspm/nodelibs-constants@0.2.0-alpha",
 		"crypto": "github:jspm/nodelibs-crypto@0.2.0-alpha",
 		"dgram": "github:jspm/nodelibs-dgram@0.2.0-alpha",
@@ -53,6 +53,7 @@ SystemJS.config({
 		"jquery": "npm:jquery@2.2.2",
 		"jsbn": "npm:jsbn@0.1.0",
 		"jsonld": "npm:jsonld@0.4.6",
+		"medium-editor": "npm:medium-editor@5.15.1",
 		"net": "github:jspm/nodelibs-net@0.2.0-alpha",
 		"os": "github:jspm/nodelibs-os@0.2.0-alpha",
 		"path": "github:jspm/nodelibs-path@0.2.0-alpha",
