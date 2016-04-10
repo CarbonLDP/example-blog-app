@@ -1,5 +1,33 @@
-<form class="ui form" [ngFormModel]="form" (ngSubmit)="onSubmit( form.value, $event )">
-	<h1 [mediumEditable]="title" (mediumEditableChange)="titleChanged( $event )" [placeholder]="'Type your title'"></h1>
-	<medium-editor [(content)]="content"></medium-editor>
-	<button type="submit" class="ui blue submit button" [disabled]="sending || ! formIsValid()" [ngClass]="{ loading: sending }">Create</button>
-</form>
+<div class="codePanel">
+	<div class="ui left labeled fluid input">
+		<a class="ui label">Title</a>
+		<input type="text" placeholder="My Awesome Title" [ngModel]="title" (ngModelChange)="onTitleChange( $event )">
+	</div>
+	<div class="codePanel-editorTabs ui secondary tabular menu">
+		<a class="item" [ngClass]="{ active: activeTab === 'content' }" (click)="activeTab='content'">Content</a>
+		<a class="item" [ngClass]="{ active: activeTab === 'style' }" (click)="activeTab='style'">Style</a>
+	</div>
+	<div [ngSwitch]="activeTab" class="codePanel-editor">
+		<template ngSwitchWhen="content">
+			<code-mirror mode="text/html"
+			             [value]="content"
+			             (valueChange)="onContentChange( $event )"
+			             (drop)="onFileDrop( $event )"
+			             (dragover)="cancelEvent( $event )"
+			             (dragenter)="cancelEvent( $event )"
+			             [(codeMirror)]="contentCodeMirror"
+			></code-mirror>
+		</template>
+		<template ngSwitchWhen="style">
+			<code-mirror mode="text/css" [value]="style" (valueChange)="onStyleChange( $event )"></code-mirror>
+		</template>
+	</div>
+	<div class="codePanel-actions ui bottom secondary menu">
+		<div class="item">
+			<div class="ui button">Create</div>
+		</div>
+	</div>
+</div>
+<div class="previewPanel">
+
+</div>

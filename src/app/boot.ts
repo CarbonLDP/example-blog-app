@@ -17,6 +17,8 @@ import AppComponent from "./AppComponent";
 import { SERVICE_PROVIDERS } from "app/services/CarbonServices";
 import { DUMMY_SERVICE_PROVIDERS } from "app/services/DummyServices";
 
+import { BLOG_PROVIDERS } from "app/blog/Blog";
+
 let providers:Provider[] = [];
 if( true ) {
 	let carbon:Carbon = new Carbon();
@@ -116,6 +118,7 @@ bootstrap( AppComponent, [
 	provide( APP_BASE_HREF, { useValue: "/src/" } ),
 
 	providers,
+	BLOG_PROVIDERS,
 ] ).then( ( appRef:ComponentRef ) => {
 	appInjector( appRef.injector );
 }).catch( ( error ) => {

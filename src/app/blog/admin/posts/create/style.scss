@@ -1,0 +1,48 @@
+:host {
+	margin: -40px 0;
+}
+
+.codePanel {
+	flex: 0 0 50%;
+	padding-left: 30px;
+	height: 100%;
+
+	overflow: hidden;
+}
+.codePanel-editorTabs {
+	margin-top: 8px;
+	border-bottom: 0;
+}
+.codePanel-editor {
+	margin-left: -30px;
+	height: calc( 100% - 48px - 37px - 50px );
+
+	code-mirror {
+		height: 100%;
+	}
+}
+.codePanel-actions.ui.secondary.menu {
+	margin-left: 0;
+	margin-right: 0;
+	padding: 5px 0;
+
+	.item:first-child {
+		margin-left: 0;
+		padding-left: 0;
+	}
+}
+
+.panelDivider {
+	flex: 0 0 15px;
+	height: 100%;
+	padding: 50px 0;
+
+	background: #333;
+
+	cursor: col-resize;
+}
+
+.previewPanel {
+	flex: 0 0 50%;
+	height: 100%;
+}

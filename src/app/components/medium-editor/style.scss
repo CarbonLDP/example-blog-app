@@ -1,0 +1,6 @@
+.editable {
+	position: relative;
+}
+.editable, .editable:focus, .editable *, .editable *:focus {
+	outline: 0 solid transparent;
+}
