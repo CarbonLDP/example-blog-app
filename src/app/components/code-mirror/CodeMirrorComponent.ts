@@ -99,10 +99,12 @@ export class Class {
 				return;
 			}
 
-			this.value = this.codeMirror.getValue();
-			let lastUpdate:string = this.value;
-			this.valueChange.emit( this.value );
+			let lastUpdate:string = this.codeMirror.getValue();
+			if( lastUpdate === this.value ) return;
+
+			this.value = lastUpdate;
 			this.lastUpdates.push( lastUpdate );
+			this.valueChange.emit( lastUpdate );
 		} );
 	}
 
