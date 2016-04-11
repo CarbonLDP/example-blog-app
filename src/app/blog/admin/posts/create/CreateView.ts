@@ -26,11 +26,12 @@ import previewStyle from "./preview.style.css!text";
 	directives: [ CORE_DIRECTIVES, ROUTER_DIRECTIVES, CodeMirrorComponent ],
 } )
 export default class AdminView {
+	private static defaultTitle:string = "Here goes the title";
 
 	slug:string = "";
 	sending:boolean = false;
 
-	title:string = "Here goes the title";
+	title:string = AdminView.defaultTitle;
 	content:string = `
 			<div class="ui container center aligned padded-y grid">
 				<div class="twelve wide computer fourteen wide tablet sixteen wide phone left aligned column">
@@ -99,10 +100,10 @@ export default class AdminView {
 			return;
 		}
 
-		for( let i:number = 0, length = fileList.length; i < length; i++ ) {
+		for( let i:number = 0, length = fileList.length; i < length; i ++ ) {
 			let file:File = fileList[ i ];
 
-			if( this.imageTypes.indexOf( file.type ) === -1 ) {
+			if( this.imageTypes.indexOf( file.type ) === - 1 ) {
 				console.warn( "Non image files are currently not supported" );
 			}
 
@@ -128,7 +129,7 @@ export default class AdminView {
 
 	onSubmit( data:any ):void {
 		this.sending = true;
-		if ( ! this.formIsValid() ) {
+		if( ! this.formIsValid() ) {
 			this.sending = false;
 			// TODO: Add visual feedback
 			return;
@@ -139,6 +140,7 @@ export default class AdminView {
 			content: this.content,
 			publishedOn: new Date(),
 		};
+		if( ! ! this.style.trim() ) post.style = this.style;
 
 		this.postService.create( post, this.slug ).then( ( postPointer:Pointer.Class ) => {
 			this.sending = false;
@@ -150,8 +152,9 @@ export default class AdminView {
 	}
 
 	formIsValid():boolean {
-		if ( ! this.title || ! this.title.trim() ) return false;
-		if ( ! this.content || ! this.content.trim() ) return false;
+		if( ! this.title || ! this.title.trim() ) return false;
+		if( this.title === AdminView.defaultTitle ) return false;
+		if( ! this.content || ! this.content.trim() ) return false;
 		return true;
 	}
 
@@ -167,7 +170,7 @@ export default class AdminView {
 		let postBodyComponent:Type;
 		try {
 			postBodyComponent = this.postBodyComponentBuilder.build( this.title, content, styles );
-		} catch ( error ) {
+		} catch( error ) {
 			// TODO: Handle error
 			let rootNodesAndErrors:HtmlParseTreeResult;
 			console.log( "Error parsing post content" );

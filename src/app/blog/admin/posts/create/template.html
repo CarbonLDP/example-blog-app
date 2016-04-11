@@ -24,7 +24,7 @@
 	</div>
 	<div class="codePanel-actions ui bottom secondary menu">
 		<div class="item">
-			<div class="ui button">Create</div>
+			<button class="ui button" (click)="onSubmit()" [ngClass]="{ loading: sending }" [disabled]="sending || ! formIsValid()">Create</button>
 		</div>
 	</div>
 </div>

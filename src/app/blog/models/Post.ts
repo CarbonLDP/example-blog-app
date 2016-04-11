@@ -8,6 +8,7 @@ export const RDF_CLASS:string = "http://example.com/ns#Post";
 export interface Class {
 	slug?:string;
 	title?:string;
+	style?:string;
 	content?:string;
 	author?:Author;
 	publishedOn?:Date;
