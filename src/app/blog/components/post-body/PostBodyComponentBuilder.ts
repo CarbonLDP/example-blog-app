@@ -2,6 +2,7 @@ import {Component, Injectable, ViewEncapsulation, Type} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/common";
 import {HtmlParser, HtmlParseTreeResult} from "angular2/src/compiler/html_parser";
 
+import HighlightDirective from "app/directives/highlight/HighlightDirective";
 import CodeMirrorComponent from "app/components/code-mirror/CodeMirrorComponent";
 
 import defaultStyle from "./style.css!text";
@@ -27,7 +28,7 @@ export default class PostBodyComponentBuilder {
 			template: content,
 			styles: styles,
 			encapsulation: ViewEncapsulation.Emulated,
-			directives: [ CORE_DIRECTIVES, CodeMirrorComponent ],
+			directives: [ CORE_DIRECTIVES, CodeMirrorComponent, HighlightDirective ],
 		} )
 		class PostBodyComponent {
 			title:string = title;

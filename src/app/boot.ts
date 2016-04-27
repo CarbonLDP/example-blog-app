@@ -77,6 +77,10 @@ if( true ) {
 			"@id": "blog:content",
 			"@type": "xsd:string",
 		},
+		"style": {
+			"@id": "blog:style",
+			"@type": "xsd:string",
+		},
 		"author": {
 			"@id": "blog:author",
 			"@type": "@id",
@@ -86,14 +90,12 @@ if( true ) {
 			"@type": "xsd:dateTime"
 		},
 		"comments": {
-			// TODO: Change letter case
-			"@id": "blog:comments",
+			"@id": "blog:comment",
 			"@type": "@id",
 			"@container": "@set",
 		},
 		"likes": {
-			// TODO: Change letter case
-			"@id": "blog:likes",
+			"@id": "blog:like",
 			"@type": "@id",
 			"@container": "@set",
 		},

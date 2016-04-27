@@ -52,6 +52,7 @@ export default class AdminView {
 		"image/jpeg",
 	];
 	private refreshPreviewEmitter:EventEmitter<any> = new EventEmitter();
+	private latestPreviewComponentRef:ComponentRef = null;
 
 	constructor( private element:ElementRef,
 	             private router:Router,
@@ -177,7 +178,10 @@ export default class AdminView {
 			return;
 		}
 
-		this.dynamicComponentLoader.loadAsRoot( postBodyComponent, ".previewPanel", this.injector ).then( ( componentRef:ComponentRef ) => {
+		if( this.latestPreviewComponentRef !== null ) this.latestPreviewComponentRef.dispose();
+
+		this.dynamicComponentLoader.loadIntoLocation( postBodyComponent, this.element, "preview" ).then( ( componentRef:ComponentRef ) => {
+			this.latestPreviewComponentRef = componentRef;
 			componentRef.hostView.changeDetectorRef.detectChanges();
 		} ).catch( ( error ) => {
 			console.error( "Error loading component" );

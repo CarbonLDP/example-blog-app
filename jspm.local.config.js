@@ -33,9 +33,11 @@ SystemJS.config({
 		"npm:*.json"
 	],
 	map: {
+		"highlight.js": "npm:highlight.js@9.3.0",
+		"es6-shim": "npm:es6-shim@0.35.0",
 		"css": "github:systemjs/plugin-css@0.1.20",
-		"angular2": "npm:angular2@2.0.0-beta.13",
-		"angular2-carbonldp": "npm:angular2-carbonldp@0.1.7",
+		"angular2": "npm:angular2@2.0.0-beta.14",
+		"angular2-carbonldp": "npm:angular2-carbonldp@0.1.8",
 		"assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
 		"buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
 		"child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
@@ -75,9 +77,9 @@ SystemJS.config({
 		"zone.js": "npm:zone.js@0.6.8"
 	},
 	packages: {
-		"npm:angular2-carbonldp@0.1.7": {
+		"npm:angular2-carbonldp@0.1.8": {
 			"map": {
-				"angular2": "npm:angular2@2.0.0-beta.13",
+				"angular2": "npm:angular2@2.0.0-beta.14",
 				"js-cookie": "npm:js-cookie@2.1.0"
 			}
 		},
@@ -118,7 +120,7 @@ SystemJS.config({
 		},
 		"npm:asn1.js@4.5.2": {
 			"map": {
-				"bn.js": "npm:bn.js@4.11.1",
+				"bn.js": "npm:bn.js@4.11.2",
 				"inherits": "npm:inherits@2.0.1",
 				"minimalistic-assert": "npm:minimalistic-assert@1.0.0"
 			}
@@ -148,13 +150,13 @@ SystemJS.config({
 		},
 		"npm:browserify-rsa@4.0.1": {
 			"map": {
-				"bn.js": "npm:bn.js@4.11.1",
+				"bn.js": "npm:bn.js@4.11.2",
 				"randombytes": "npm:randombytes@2.0.3"
 			}
 		},
 		"npm:browserify-sign@4.0.0": {
 			"map": {
-				"bn.js": "npm:bn.js@4.11.1",
+				"bn.js": "npm:bn.js@4.11.2",
 				"browserify-rsa": "npm:browserify-rsa@4.0.1",
 				"create-hash": "npm:create-hash@1.1.2",
 				"create-hmac": "npm:create-hmac@1.1.4",
@@ -183,7 +185,7 @@ SystemJS.config({
 		},
 		"npm:create-ecdh@4.0.0": {
 			"map": {
-				"bn.js": "npm:bn.js@4.11.1",
+				"bn.js": "npm:bn.js@4.11.2",
 				"elliptic": "npm:elliptic@6.2.3"
 			}
 		},
@@ -223,7 +225,7 @@ SystemJS.config({
 		},
 		"npm:diffie-hellman@5.0.2": {
 			"map": {
-				"bn.js": "npm:bn.js@4.11.1",
+				"bn.js": "npm:bn.js@4.11.2",
 				"miller-rabin": "npm:miller-rabin@4.0.0",
 				"randombytes": "npm:randombytes@2.0.3"
 			}
@@ -235,7 +237,7 @@ SystemJS.config({
 		},
 		"npm:elliptic@6.2.3": {
 			"map": {
-				"bn.js": "npm:bn.js@4.11.1",
+				"bn.js": "npm:bn.js@4.11.2",
 				"brorand": "npm:brorand@1.0.5",
 				"hash.js": "npm:hash.js@1.0.3",
 				"inherits": "npm:inherits@2.0.1"
@@ -269,7 +271,7 @@ SystemJS.config({
 		},
 		"npm:miller-rabin@4.0.0": {
 			"map": {
-				"bn.js": "npm:bn.js@4.11.1",
+				"bn.js": "npm:bn.js@4.11.2",
 				"brorand": "npm:brorand@1.0.5"
 			}
 		},
@@ -289,7 +291,7 @@ SystemJS.config({
 		},
 		"npm:public-encrypt@4.0.0": {
 			"map": {
-				"bn.js": "npm:bn.js@4.11.1",
+				"bn.js": "npm:bn.js@4.11.2",
 				"browserify-rsa": "npm:browserify-rsa@4.0.1",
 				"create-hash": "npm:create-hash@1.1.2",
 				"parse-asn1": "npm:parse-asn1@5.0.0",

@@ -34,10 +34,11 @@
     },
     "dependencies": {
       "angular2": "npm:angular2@^2.0.0-beta.13",
-      "angular2-carbonldp": "npm:angular2-carbonldp@^0.1.7",
+      "angular2-carbonldp": "npm:angular2-carbonldp@^0.1.8",
       "carbonldp": "npm:carbonldp@^0.25.0",
       "codemirror": "npm:codemirror@^5.13.4",
       "css": "github:systemjs/plugin-css@^0.1.20",
+      "highlight.js": "npm:highlight.js@^9.3.0",
       "jquery": "npm:jquery@^2.2.2",
       "jsonld": "npm:jsonld@^0.4.6",
       "medium-editor": "npm:medium-editor@^5.15.1",
@@ -56,6 +57,7 @@
       "dgram": "github:jspm/nodelibs-dgram@^0.2.0-alpha",
       "dns": "github:jspm/nodelibs-dns@^0.2.0-alpha",
       "ecc-jsbn": "npm:ecc-jsbn@0",
+      "es6-shim": "npm:es6-shim@^0.35.0",
       "events": "github:jspm/nodelibs-events@^0.2.0-alpha",
       "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
       "http": "github:jspm/nodelibs-http@^0.2.0-alpha",
@@ -80,31 +82,6 @@
       "zlib": "github:jspm/nodelibs-zlib@^0.2.0-alpha"
     },
     "overrides": {
-      "npm:angular2@2.0.0-beta.13": {
-        "main": false,
-        "dependencies": {
-          "reflect-metadata": "npm:reflect-metadata@0.1.2",
-          "rxjs": "npm:rxjs@^5.0.0-beta.2",
-          "zone.js": "npm:zone.js@^0.6.8"
-        },
-        "peerDependencies": {
-          "reflect-metadata": "npm:reflect-metadata@0.1.2",
-          "rxjs": "npm:rxjs@^5.0.0-beta.2",
-          "zone.js": "npm:zone.js@^0.6.8"
-        },
-        "jspmNodeConversion": false,
-        "map": {
-          "crypto": "@empty"
-        },
-        "meta": {
-          "src/*.js": {
-            "deps": [
-              "reflect-metadata",
-              "zone.js"
-            ]
-          }
-        }
-      },
       "npm:browserify-zlib@0.1.4": {
         "dependencies": {
           "readable-stream": "^2.0.2",
